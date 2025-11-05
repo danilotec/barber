@@ -1,0 +1,12 @@
+{% extends "core/base.html" %}
+{% block title %}Meu Perfil{% endblock %}
+
+{% block content %}
+<h2>Meu Perfil</h2>
+
+<p><strong>Usuário:</strong> {{ user.username }}</p>
+<p><strong>Email:</strong> {{ user.email }}</p>
+<p><strong>Telefone:</strong> {{ user.phone }}</p>
+
+<p><a href="{% url 'admin:password_change' %}">Alterar Senha</a></p>
+{% endblock %}

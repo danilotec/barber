@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}Barbearia{% endblock %}</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="{% url 'landing' %}">Início</a>
+      <a href="{% url 'agendamento:services_list' %}">Serviços</a>
+      {% if user.is_authenticated %}
+        <a href="{% url 'cliente:dashboard' %}">Minha Conta</a>
+        {% if user.is_barbeiro %}
+          <a href="{% url 'barbeiro:agenda' %}">Agenda Barbeiro</a>
+        {% endif %}
+        <a href="{% url 'admin:logout' %}">Sair</a>
+      {% else %}
+        <a href="{% url 'admin:login' %}">Entrar</a>
+      {% endif %}
+    </nav>
+  </header>
+
+  <main>
+    {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer>
+    <p>© {{ now.year }} Barbearia | Todos os direitos reservados.</p>
+  </footer>
+</body>
+</html>

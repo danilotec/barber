@@ -1,0 +1,31 @@
+{% extends "core/base.html" %}
+{% block title %}Agenda do Barbeiro{% endblock %}
+
+{% block content %}
+<h2>Agenda de {{ user.username }}</h2>
+
+{% if appointments %}
+  <table>
+    <thead>
+      <tr>
+        <th>Cliente</th>
+        <th>Serviço</th>
+        <th>Data e Hora</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for appt in appointments %}
+      <tr>
+        <td>{{ appt.cliente.username }}</td>
+        <td>{{ appt.service.name }}</td>
+        <td>{{ appt.start|date:"d/m/Y H:i" }}</td>
+        <td>{% if appt.canceled %}Cancelado{% else %}Confirmado{% endif %}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <p>Não há agendamentos marcados.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "core/base.html" %}
+{% block title %}Barbearia - Home{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <h1>Bem-vindo à Barbearia</h1>
+  <p>Seu estilo começa aqui. Agende seu horário com nossos barbeiros profissionais.</p>
+  <a class="btn" href="{% url 'agendamento:services_list' %}">Ver Serviços</a>
+</section>
+
+<section class="about">
+  <h2>Sobre Nós</h2>
+  <p>Tradição, qualidade e atendimento personalizado. Nossa barbearia é o lugar ideal para cuidar do seu visual.</p>
+</section>
+{% endblock %}

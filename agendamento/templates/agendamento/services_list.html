@@ -1,0 +1,18 @@
+{% extends "core/base.html" %}
+{% block title %}Serviços{% endblock %}
+
+{% block content %}
+<h2>Serviços Disponíveis</h2>
+<ul class="service-list">
+  {% for s in services %}
+    <li>
+      <h3>{{ s.name }}</h3>
+      <p>Duração: {{ s.duration_minutes }} minutos</p>
+      <p>Preço: R$ {{ s.price }}</p>
+      <a href="{% url 'agendamento:create_appointment' %}" class="btn">Agendar</a>
+    </li>
+  {% empty %}
+    <li>Nenhum serviço disponível no momento.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

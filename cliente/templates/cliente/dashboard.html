@@ -1,0 +1,34 @@
+{% extends "core/base.html" %}
+{% block title %}Minha Conta{% endblock %}
+
+{% block content %}
+<h2>Meus Agendamentos</h2>
+
+{% if appointments %}
+  <table>
+    <thead>
+      <tr>
+        <th>Serviço</th>
+        <th>Data</th>
+        <th>Barbeiro</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for appt in appointments %}
+      <tr>
+        <td>{{ appt.service.name }}</td>
+        <td>{{ appt.start|date:"d/m/Y H:i" }}</td>
+        <td>{{ appt.barbeiro }}</td>
+        <td>{% if appt.canceled %}Cancelado{% else %}Ativo{% endif %}</td>
+        <td><a href="{% url 'agendamento:appointment_detail' appt.id %}">Ver</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <p>Você ainda não possui agendamentos.</p>
+  <a href="{% url 'agendamento:services_list' %}" class="btn">Agendar Agora</a>
+{% endif %}
+{% endblock %}

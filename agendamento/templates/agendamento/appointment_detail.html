@@ -1,0 +1,20 @@
+{% extends "core/base.html" %}
+{% block title %}Detalhes do Agendamento{% endblock %}
+
+{% block content %}
+<h2>Detalhes do Agendamento</h2>
+
+<p><strong>Serviço:</strong> {{ appointment.service.name }}</p>
+<p><strong>Barbeiro:</strong> {{ appointment.barbeiro }}</p>
+<p><strong>Data e Hora:</strong> {{ appointment.start|date:"d/m/Y H:i" }}</p>
+<p><strong>Duração:</strong> {{ appointment.service.duration_minutes }} minutos</p>
+
+{% if appointment.canceled %}
+  <p class="alert alert-warning">Este agendamento foi cancelado.</p>
+{% else %}
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Cancelar</button>
+  </form>
+{% endif %}
+{% endblock %}

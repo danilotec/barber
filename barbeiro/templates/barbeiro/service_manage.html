@@ -1,0 +1,27 @@
+{% extends "core/base.html" %}
+{% block title %}Gerenciar Serviços{% endblock %}
+
+{% block content %}
+<h2>Gerenciar Serviços</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Serviço</th>
+      <th>Duração</th>
+      <th>Preço</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for s in services %}
+    <tr>
+      <td>{{ s.name }}</td>
+      <td>{{ s.duration_minutes }} min</td>
+      <td>R$ {{ s.price }}</td>
+      <td>{% if s.active %}Ativo{% else %}Inativo{% endif %}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
